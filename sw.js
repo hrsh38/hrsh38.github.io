@@ -26,28 +26,24 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-4eb15963d5d5ec1ca716.js"
+    "url": "webpack-runtime-331ba2b85221f638cf61.js"
   },
   {
-    "url": "commons-940ee805e0110f3995f4.js"
+    "url": "commons-46322742dd560a6f9e49.js"
   },
   {
-    "url": "app-cf5302a047803863330c.js"
+    "url": "app-5b12f374b7f5df9e5a34.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-87ef582ba388a83f73c0.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "b4aa39b4fec89eb1c64ba64f965eedc0"
-  },
-  {
-    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "c355c8040c47a63bfb3360e4b7cb6553"
+    "revision": "5fffc2d9bb653f48400ab1e5b1ecaf06"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "60bf380deeee74b29f89c245d59377f4"
+    "revision": "9ce079fe1d584df68c35cdafb5295d3d"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
@@ -66,12 +62,12 @@ const { NavigationRoute } = workbox.routing
 
 const navigationRoute = new NavigationRoute(async ({ event }) => {
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^/hrsh38.github.io`), ``)
+  pathname = pathname.replace(new RegExp(`^`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/hrsh38.github.io/app-cf5302a047803863330c.js`))) {
+  if (!resources || !(await caches.match(`/app-5b12f374b7f5df9e5a34.js`))) {
     return await fetch(event.request)
   }
 
@@ -84,7 +80,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/hrsh38.github.io/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
   return await caches.match(offlineShell)
 })
 
